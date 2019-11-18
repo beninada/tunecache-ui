@@ -6,6 +6,8 @@ const Index = props => (
   <Layout>
     <ul>
       {props.users && props.users.map(user => (
+        // Link to user profiles using dynamic routing
+        // https://github.com/zeit/next.js/#dynamic-routing
         <li key={user.id}>
           <Link href="/user/[uri]" as={`/user/${user.uri}`}>
             <a>{user.username}</a>
@@ -17,6 +19,7 @@ const Index = props => (
 );
 
 Index.getInitialProps = async function() {
+  // For the sake of example, display artists from the db
   const res = await ApiService.get(`users?artists=1`);
 
   return {

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import JwtService from './jwt.service';
-import { API_URL } from './config';
 
 const ApiService = {
   init() {
-    axios.defaults.baseURL = API_URL;
+    // TODO: this should be configured by an env variable
+    axios.defaults.baseURL = 'http://tunecache.test/api/v1';
   },
   setHeader() {
     axios.defaults.headers.common['Authorization'] = `Bearer ${JwtService.getToken()}`

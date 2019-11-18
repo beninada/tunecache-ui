@@ -12,7 +12,7 @@ const Layout = props => (
     <Navbar />
     {props.children}
     <style jsx global>{`
-      // insert global styles here
+      // Insert global styles here
     `}</style>
   </div>
 );
