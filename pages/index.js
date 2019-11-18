@@ -1,14 +1,16 @@
+import Link from 'next/link';
 import Layout from '../components/Layout';
-import TrackLink from '../components/TrackLink';
-import fetch from 'isomorphic-unfetch';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ApiService from '../common/api.service';
 
 const Index = props => (
   <Layout>
     <ul>
-      {props.tracks && props.tracks.map(track => (
-        <li key={track.id}>
-          <TrackLink id={track.id} name={track.name} />
+      {props.users && props.users.map(user => (
+        <li key={user.id}>
+          <Link href="/user/[uri]" as={`/user/${user.uri}`}>
+            <a>{user.username}</a>
+          </Link>
         </li>
       ))}
     </ul>
@@ -40,11 +42,10 @@ const Index = props => (
 );
 
 Index.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=music');
-  const data = await res.json();
+  const res = await ApiService.get(`users?artists=1`);
 
   return {
-    tracks: data.map(entry => entry.show)
+    users: res.data,
   };
 };
 
