@@ -1,6 +1,7 @@
 import Layout from '../components/Layout';
 import TrackLink from '../components/TrackLink';
 import fetch from 'isomorphic-unfetch';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Index = props => (
   <Layout>

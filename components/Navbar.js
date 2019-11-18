@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import Button from 'react-bootstrap/Button';
 
 const linkStyle = {
   marginRight: 15
 };
 
-const Header = () => (
+const Navbar = () => (
   <div>
     <Link href="/">
       <a style={linkStyle}>
@@ -14,7 +15,8 @@ const Header = () => (
     <Link href="/about">
       <a style={linkStyle}>About</a>
     </Link>
+    <Button variant="primary">Sign Up</Button>
   </div>
 );
 
-export default Header;
+export default Navbar;
