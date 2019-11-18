@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Navbar';
 
 const layoutStyle = {
@@ -10,6 +11,9 @@ const Layout = props => (
   <div style={layoutStyle}>
     <Navbar />
     {props.children}
+    <style jsx global>{`
+      // insert global styles here
+    `}</style>
   </div>
 );
 

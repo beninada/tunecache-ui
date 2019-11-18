@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ApiService from '../common/api.service';
 
 const Index = props => (
@@ -14,30 +13,6 @@ const Index = props => (
         </li>
       ))}
     </ul>
-    <style jsx>{`
-      h1,
-      li {
-        font-family: 'Helvetica', 'Arial', sans-serif;
-      }
-
-      ul {
-        padding: 0;
-      }
-
-      li {
-        list-style: none;
-        margin: 5px 0;
-      }
-
-      a {
-        text-decoration: none;
-        color: blue;
-      }
-
-      a:hover {
-        opacity: 0.6;
-      }
-    `}</style>
   </Layout>
 );
 
