@@ -7,8 +7,9 @@ import {
 } from 'react-router-dom';
 import UserService from '../api/user.service';
 import User from './User';
+import Layout from './Layout';
 
-function Users() {
+const Users = () => {
   let match = useRouteMatch();
 
   const [artists, setArtists] = useState(null);
@@ -20,22 +21,24 @@ function Users() {
   }, []);
 
   return (
-    <Switch>
-      <Route path={`${match.path}/:uri`}>
-        <User/>
-      </Route>
-      <Route path={match.path}>
-        <h2>Artists</h2>
-        <ul>
-          {artists && artists.map(artist => {
-            return <li key={artist.id}>
-              <Link to={`${match.url}/${artist.uri}`}>{artist.uri}</Link>
-            </li>
-          })}
-        </ul>
-      </Route>
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route path={`${match.path}/:uri`}>
+          <User/>
+        </Route>
+        <Route path={match.path}>
+          <h2>Artists</h2>
+          <ul>
+            {artists && artists.map(artist => {
+              return <li key={artist.id}>
+                <Link to={`${match.url}/${artist.uri}`}>{artist.uri}</Link>
+              </li>
+            })}
+          </ul>
+        </Route>
+      </Switch>
+    </Layout>
   );
-}
+};
 
 export default Users;

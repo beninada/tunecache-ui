@@ -1,11 +1,14 @@
 import React from 'react';
+import Layout from './Layout';
 
-function Home() {
+const Home = () => {
   return (
-    <div>
-      This is the home page.
-    </div>
+    <Layout>
+      <p>
+        This is the home page.
+      </p>
+    </Layout>
   );
-}
+};
 
 export default Home;

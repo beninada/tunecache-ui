@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import UserService from '../api/user.service';
 
-function User() {
+const User = () => {
   const [artist, setArtist] = useState(null);
   let { uri } = useParams();
 
@@ -20,6 +19,6 @@ function User() {
       <div>Email: {artist && artist.email}</div>
     </div>
   );
-}
+};
 
 export default User;
