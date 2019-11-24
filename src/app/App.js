@@ -7,6 +7,7 @@ import {
 import Home from '../components/Home';
 import About from '../components/About';
 import Users from '../components/Users';
+import Signup from '../components/Signup';
 import './App.css';
 // import logo from '../logo.svg';
 
@@ -19,6 +20,9 @@ const App = () => {
         </Route>
         <Route path="/users">
           <Users />
+        </Route>
+        <Route path="/signup">
+          <Signup />
         </Route>
         <Route path="/">
           <Home />
