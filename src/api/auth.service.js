@@ -8,13 +8,14 @@ const AuthService = {
       password_confirmation,
       role,
     }) => {
-      await axiosInstance.post('register', {
+      const response = await axiosInstance.post('register', {
         username,
         email,
         password,
         password_confirmation,
         role,
       });
+      return response.data;
     },
   login: async (email, password) =>
     await axiosInstance.post('login', {

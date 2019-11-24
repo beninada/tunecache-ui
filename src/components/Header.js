@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   Navbar,
   Nav,
@@ -7,6 +8,10 @@ import {
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const { username } = useSelector(
+    (state) => state.loggedInUser
+  );
+
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand as={ Link } to="/">TuneCache</Navbar.Brand>
@@ -17,7 +22,8 @@ const Header = () => {
           <Nav.Link as={ Link } to="/about">About</Nav.Link>
         </Nav>
         <Nav>
-          <Button as={ Link } to="/signup" variant="primary">Sign Up</Button>
+          {!username && <Button as={ Link } to="/signup" variant="primary">Sign Up</Button>}
+          {username && <div>{username}</div>}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

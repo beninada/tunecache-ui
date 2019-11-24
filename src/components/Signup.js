@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Button,
   Form,
   Alert,
 } from 'react-bootstrap';
 import AuthService from '../api/auth.service';
+import { setLoggedInUser } from '../redux/loggedInUser.slice';
 import Layout from './Layout';
 
-const Signup = (props) => {
+const Signup = () => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      await AuthService.register({
+      const loggedInUser = await AuthService.register({
         username: event.target.username.value,
         email: event.target.email.value,
         password: event.target.password.value,
         password_confirmation: event.target.password_confirmation.value,
         role: 'artist',
       });
+      dispatch(setLoggedInUser(loggedInUser));
     } catch (error) {
-      setErrors(error.response.data.errors);
       console.error(error);
+      setErrors(error.response.data.errors);
     }
   }
 
