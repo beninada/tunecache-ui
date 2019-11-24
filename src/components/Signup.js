@@ -5,12 +5,14 @@ import {
   Form,
   Alert,
 } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import AuthService from '../api/auth.service';
 import { setLoggedInUser } from '../redux/loggedInUser.slice';
 import Layout from './Layout';
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [errors, setErrors] = useState(null);
 
   async function handleSubmit(event) {
@@ -24,7 +26,9 @@ const Signup = () => {
         password_confirmation: event.target.password_confirmation.value,
         role: 'artist',
       });
+
       dispatch(setLoggedInUser(loggedInUser));
+      history.push('/');
     } catch (error) {
       console.error(error);
       setErrors(error.response.data.errors);
