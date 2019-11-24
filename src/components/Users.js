@@ -15,8 +15,8 @@ const Users = () => {
   const [artists, setArtists] = useState(null);
 
   useEffect(() => {
-    UserService.artists().then(res => {
-      setArtists(res.data);
+    UserService.artists().then(artists => {
+      setArtists(artists);
     });
   }, []);
 

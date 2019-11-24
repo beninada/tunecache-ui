@@ -5,10 +5,14 @@ const UserService = {
     const response = await authedAxiosInstance.get('me');
     return response.data;
   },
-  artists: async () =>
-    await axiosInstance.get('users?artists=1'),
-  artist: async (uri) =>
-    await axiosInstance.get(`users/artist/${uri}/profile`),
+  artists: async () => {
+    const response = await axiosInstance.get('users?artists=1');
+    return response.data;
+  },
+  artist: async (uri) => {
+    const response = await axiosInstance.get(`users/artist/${uri}/profile`);
+    return response.data;
+  }
 };
 
 export default UserService;

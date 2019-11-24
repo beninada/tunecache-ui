@@ -7,8 +7,8 @@ const User = () => {
   let { uri } = useParams();
 
   useEffect(() => {
-    UserService.artist(uri).then(res => {
-      setArtist(res.data);
+    UserService.artist(uri).then(artist => {
+      setArtist(artist);
     });
   }, [ uri ]);
 

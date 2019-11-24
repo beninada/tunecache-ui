@@ -17,17 +17,25 @@ const AuthService = {
       });
       return response.data;
     },
-  login: async (email, password) =>
-    await axiosInstance.post('login', {
+  login: async (email, password) => {
+    const response = await axiosInstance.post('login', {
       email,
       password,
-    }),
-  logout: async () =>
-    await authedAxiosInstance.get('logout'),
-  passwordForgot: async () =>
-    await axiosInstance.post('password/forgot'),
-  passwordReset: async () =>
-    await axiosInstance.post('password/reset'),
+    });
+    return response.data;
+  },
+  logout: async () => {
+    const response = await authedAxiosInstance.get('logout');
+    return response.data;
+  },
+  passwordForgot: async () => {
+    const response = await axiosInstance.post('password/forgot');
+    return response.data;
+  },
+  passwordReset: async () => {
+    const response = await axiosInstance.post('password/reset');
+    return response.data;
+  },
 };
 
 export default AuthService;
