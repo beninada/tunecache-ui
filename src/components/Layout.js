@@ -1,11 +1,14 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import Header from './Header';
 
 const Layout = (props) => {
   return (
     <div>
       <Header />
-      {props.children}
+      <Container className="mt-4">
+        {props.children}
+      </Container>
     </div>
   );
 };
