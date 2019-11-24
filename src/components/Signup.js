@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import AuthService from '../api/auth.service';
-import { setLoggedInUser } from '../redux/loggedInUser.slice';
+import { setLoggedInUser } from '../store/loggedInUser.slice';
 import Layout from './Layout';
 
 const Signup = () => {
@@ -26,7 +26,6 @@ const Signup = () => {
         password_confirmation: event.target.password_confirmation.value,
         role: 'artist',
       });
-
       dispatch(setLoggedInUser(loggedInUser));
       history.push('/');
     } catch (error) {

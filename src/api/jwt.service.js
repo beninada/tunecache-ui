@@ -1,15 +1,22 @@
-const ID_TOKEN_KEY = 'tunecache_access_token';
+import {
+  ACCESS_TOKEN_KEY,
+  ACCESS_EXPIRE,
+} from '../constants';
+import Cookies from 'js-cookie';
 
-export const getToken = () => {
-  return window.localStorage.getItem(ID_TOKEN_KEY);
+const JwtService = {
+  getToken: () => {
+    return Cookies.get(ACCESS_TOKEN_KEY);
+  },
+  saveToken: (token) => {
+    const date = new Date();
+    Cookies.set(ACCESS_TOKEN_KEY, token, {
+      expires: new Date(date.getTime() + ACCESS_EXPIRE * 1000),
+    });
+  },
+  destroyToken: () => {
+    Cookies.remove(ACCESS_TOKEN_KEY);
+  },
 };
 
-export const saveToken = token => {
-  window.localStorage.setItem(ID_TOKEN_KEY, token);
-};
-
-export const destroyToken = () => {
-  window.localStorage.removeItem(ID_TOKEN_KEY);
-};
-
-export default { getToken, saveToken, destroyToken };
+export default JwtService;

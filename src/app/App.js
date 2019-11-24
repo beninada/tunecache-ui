@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,8 +11,21 @@ import Users from '../components/Users';
 import Signup from '../components/Signup';
 import './App.css';
 // import logo from '../logo.svg';
+import JwtService from '../api/jwt.service';
+import UserService from '../api/user.service';
+import { setLoggedInUser } from '../store/loggedInUser.slice';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (JwtService.getToken()) {
+      UserService.me().then((loggedInUser) => {
+        dispatch(setLoggedInUser(loggedInUser));
+      });
+    }
+  }, [ dispatch ]);
+
   return (
     <Router>
       <Switch>

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import JwtService from '../api/jwt.service';
 
 let initialState = {
   email: null,
@@ -16,6 +17,10 @@ const loggedInUser = createSlice({
       state.username = action.payload.username;
       state.uri = action.payload.uri;
       state.roles = action.payload.roles;
+
+      if (action.payload.token) {
+        JwtService.saveToken(action.payload.token);
+      }
     },
   },
 });

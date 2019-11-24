@@ -1,8 +1,10 @@
 import { axiosInstance, authedAxiosInstance } from './api.service';
 
 const UserService = {
-  me: async () =>
-    await authedAxiosInstance.get('me'),
+  me: async () => {
+    const response = await authedAxiosInstance.get('me');
+    return response.data;
+  },
   artists: async () =>
     await axiosInstance.get('users?artists=1'),
   artist: async (uri) =>

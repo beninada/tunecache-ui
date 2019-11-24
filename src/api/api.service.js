@@ -1,16 +1,16 @@
-import { ACCESS_TOKEN } from '../common/constants';
-
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import JwtService from './jwt.service';
 
 const createAxiosConfig = (withAuth) => {
   const config = {
     baseURL: `${process.env.REACT_APP_API_URL}/api/v1/`,
+    headers: {},
   };
 
   if (withAuth) {
-    if (Cookies.get(ACCESS_TOKEN)) {
-      config.headers.Authorization = `Bearer ${Cookies.get(ACCESS_TOKEN)}`;
+    const token = JwtService.getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
   }
 
