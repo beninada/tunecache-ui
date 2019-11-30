@@ -22,11 +22,18 @@ const loggedInUser = createSlice({
         JwtService.saveToken(action.payload.token);
       }
     },
+    destroyLoggedInUser(state, action) {
+      Object.keys(state).forEach(function(index) {
+        state[index] = null;
+      });
+      JwtService.destroyToken();
+    },
   },
 });
 
 export const {
   setLoggedInUser,
+  destroyLoggedInUser,
 } = loggedInUser.actions;
 
 export default loggedInUser.reducer;

@@ -9,6 +9,7 @@ import Home from '../components/Home';
 import About from '../components/About';
 import Users from '../components/Users';
 import Signup from '../components/Signup';
+import Login from '../components/Login';
 import './App.css';
 // import logo from '../logo.svg';
 import JwtService from '../api/jwt.service';
@@ -37,6 +38,9 @@ const App = () => {
         </Route>
         <Route path="/signup">
           <Signup />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
         <Route path="/">
           <Home />

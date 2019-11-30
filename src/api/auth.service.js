@@ -17,11 +17,15 @@ const AuthService = {
       });
       return response.data;
     },
-  login: async (email, password) => {
+  login: async ({
+      email,
+      password,
+    }) => {
     const response = await axiosInstance.post('login', {
       email,
       password,
     });
+    authedAxiosInstance.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
     return response.data;
   },
   logout: async () => {

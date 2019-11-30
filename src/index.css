@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+/* Manual bootstrap override - keep dropdown menu on screen */
+.header-right-dropdown .dropdown-menu {
+  left: auto;
+  right: 0;
+}
