@@ -37,7 +37,7 @@ const Signup = () => {
   return (
     <Layout>
       <h1 className="text-center font-weight-bold">Sign Up</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={ handleSubmit }>
         <Form.Group controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control type="text" placeholder="Username" />
@@ -63,7 +63,7 @@ const Signup = () => {
       </Form>
       <div className="mt-3">
         {errors && errors.map((error, index) =>
-          <Alert variant="danger" key={index}>{error}</Alert>
+          <Alert variant="danger" key={ index }>{ error }</Alert>
         )}
       </div>
     </Layout>

@@ -41,8 +41,8 @@ const Header = () => {
           </ButtonToolbar>}
           {username &&
           <NavDropdown title={ username } className="header-right-dropdown">
-            <NavDropdown.Item as={ Link } to={`/users/${uri}`}>My Profile</NavDropdown.Item>
-            <NavDropdown.Item eventKey={'logout'}>Logout</NavDropdown.Item>
+            <NavDropdown.Item as={ Link } to={ `/users/${uri}` }>My Profile</NavDropdown.Item>
+            <NavDropdown.Item eventKey={ 'logout' }>Logout</NavDropdown.Item>
           </NavDropdown>}
         </Nav>
       </Navbar.Collapse>
