@@ -10,6 +10,7 @@ import About from '../components/About';
 import Users from '../components/Users';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
+import Upload from '../components/Upload';
 import './App.css';
 // import logo from '../logo.svg';
 import JwtService from '../api/jwt.service';
@@ -41,6 +42,9 @@ const App = () => {
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/upload">
+          <Upload />
         </Route>
         <Route path="/">
           <Home />

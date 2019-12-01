@@ -1,7 +1,7 @@
 import {
   ACCESS_TOKEN_KEY,
   ACCESS_TOKEN_EXPIRES_IN,
-} from '../constants';
+} from '../constants/constants';
 import Cookies from 'js-cookie';
 
 const JwtService = {
