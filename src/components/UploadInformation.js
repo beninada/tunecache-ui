@@ -4,8 +4,13 @@ import allGenders from '../constants/genres';
 
 import { Form, Group, Label, Control, Text, Button } from 'react-bootstrap';
 
+import { useSelector } from 'react-redux';
 
 function UploadInformation() {
+
+  const { track } = useSelector(
+    (state) => state.trackUpload
+  );
 
   const [genres, setGenres] = useState(null);
 
@@ -23,14 +28,13 @@ function UploadInformation() {
 
         <Form.Group controlId="trackDescription">
           <Form.Label>Description</Form.Label>
-          <Form.Control as="description" rows="3" />
+          <Form.Control as="textarea" rows="3" placeholder="Track Description" />
         </Form.Group>
 
-        <Form.Group controlId="exampleForm.ControlSelect2">
+        <Form.Group controlId="ControlSelect2">
           <Form.Label>Genres</Form.Label>
-            <Select options={genres} isMulti />
+          <Select options={genres} isMulti />
         </Form.Group>
-
 
         <Button variant="primary" type="submit">
           Submit

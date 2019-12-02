@@ -1,8 +1,8 @@
-import { axiosInstance, authedAxiosInstance } from './api.service';
+import { authedAxiosInstance } from './api.service';
 
 const TrackService = {
   upload: async (tracks) => {
-  const response = await axiosInstance.post('tracks/upload', tracks);
+  const response = await authedAxiosInstance.post('tracks/upload', tracks);
   authedAxiosInstance.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
   return response.data;
 }
