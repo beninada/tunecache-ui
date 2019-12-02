@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import allGenders from '../constants/genres';
 
-import { Form, Group, Label, Control, Text, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 import { useSelector } from 'react-redux';
 

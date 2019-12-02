@@ -1,97 +1,59 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import {
-  Button, Form
+  Alert,
 } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import TrackService from '../api/track.service';
 
 import { setTrackUpload } from '../store/trackUpload.slice';
 
-function DragnDrop() {
-
-  var tracksArray = [];
-
+const DragnDrop = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+
+  const { id } = useSelector(
+    (state) => state.loggedInUser
+  );
 
   const [errors, setErrors] = useState(null);
-  const [tracks, setTracks] = useState(null);
 
-  let formData = new FormData();
-
-  const submitForm = async () => {
-    try {
-      const track = await TrackService.upload(tracks);
-      dispatch(setTrackUpload(track));
-      history.push('/');
-
-    } catch (error) {
-      console.error(error);
-      setErrors([error.response.data.message]);
-    }
-  }
-
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback(async (acceptedFiles) => {
+    const formData = new FormData();
 
     for (let i = 0; i < acceptedFiles.length; i++) {
       formData.append('tracks[]', acceptedFiles[i]);
     }
 
-  });
+    try {
+      const tracks = await TrackService.upload({
+        tracks: formData,
+        userId: id,
+      });
+      console.log(tracks);
+      dispatch(setTrackUpload(tracks));
+    } catch (error) {
+      console.error(error);
+      setErrors([error.response.data.message]);
+    }
+  }, [dispatch, id]);
 
-  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({ onDrop });
-
-  const files = acceptedFiles.map(file => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ));
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <Form onSubmit={ submitForm }>
+    <div>
       <section className="container">
-
         <div {...getRootProps({ className: 'dropzone' })}>
           <input {...getInputProps()} />
           <p>Drag 'n' drop some files here, or click to select files</p>
         </div>
-
-        {files.length > 0 &&
-          <div>
-            <aside>
-              <h4>Files</h4>
-              <hr />
-              <ul>{files}</ul>
-            </aside>
-            <Button variant="primary" type="submit">
-              Upload
-        </Button>
-          </div>
-        }
-
       </section>
-    </Form>
-
+      <div className="mt-3">
+        {errors && errors.map((error, index) =>
+          <Alert variant="danger" key={ index }>{ error }</Alert>
+        )}
+      </div>
+    </div>
   );
-}
-
-async function myCustomFileGetter(event) {
-  const files = [];
-  const fileList = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-
-  for (var i = 0; i < fileList.length; i++) {
-    const file = fileList.item(i);
-
-    Object.defineProperty(file, 'myProp', {
-      value: true
-    });
-
-    files.push(file);
-  }
-
-  return files;
 }
 
 export default DragnDrop;

@@ -9,16 +9,14 @@ const trackUpload = createSlice({
   initialState,
   reducers: {
     setTrackUpload(state, action) {
-      state.tracks = action.payload.tracks;
+      state.tracks = action.payload;
     },
-    getTrackUpload(state, action){
-      return state.tracks;
-    }
   },
 });
 
 export const {
-  setTrackUpload, getTrackUpload
+  setTrackUpload,
+  getTrackUpload,
 } = trackUpload.actions;
 
 export default trackUpload.reducer;

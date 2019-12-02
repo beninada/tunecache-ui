@@ -13,6 +13,7 @@ const loggedInUser = createSlice({
   initialState,
   reducers: {
     setLoggedInUser(state, action) {
+      state.id = action.payload.id;
       state.email = action.payload.email;
       state.username = action.payload.username;
       state.uri = action.payload.uri;
