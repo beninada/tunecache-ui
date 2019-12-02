@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-  tracks: []
+  tracks: [],
+  loading: false,
 };
 
 const trackUpload = createSlice({
@@ -11,12 +12,15 @@ const trackUpload = createSlice({
     setTrackUpload(state, action) {
       state.tracks = action.payload;
     },
+    setTrackUploadLoading(state, action) {
+      state.loading = action.payload;
+    },
   },
 });
 
 export const {
   setTrackUpload,
-  getTrackUpload,
+  setTrackUploadLoading,
 } = trackUpload.actions;
 
 export default trackUpload.reducer;

@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import {
   Alert,
 } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
 import TrackService from '../api/track.service';
-
 import { setTrackUpload } from '../store/trackUpload.slice';
+import { setTrackUploadLoading } from '../store/trackUpload.slice';
 
-const DragnDrop = () => {
+const TrackDropzone = () => {
   const dispatch = useDispatch();
 
   const { id } = useSelector(
@@ -25,12 +25,13 @@ const DragnDrop = () => {
     }
 
     try {
+      dispatch(setTrackUploadLoading(true));
       const tracks = await TrackService.upload({
         tracks: formData,
         userId: id,
       });
-      console.log(tracks);
       dispatch(setTrackUpload(tracks));
+      dispatch(setTrackUploadLoading(false));
     } catch (error) {
       console.error(error);
       setErrors([error.response.data.message]);
@@ -41,12 +42,10 @@ const DragnDrop = () => {
 
   return (
     <div>
-      <section className="container">
-        <div {...getRootProps({ className: 'dropzone' })}>
-          <input {...getInputProps()} />
-          <p>Drag 'n' drop some files here, or click to select files</p>
-        </div>
-      </section>
+      <div {...getRootProps({ className: 'dropzone' })}>
+        <input {...getInputProps()} />
+        <p>Drag 'n' drop some files here, or click to select files</p>
+      </div>
       <div className="mt-3">
         {errors && errors.map((error, index) =>
           <Alert variant="danger" key={ index }>{ error }</Alert>
@@ -56,4 +55,4 @@ const DragnDrop = () => {
   );
 }
 
-export default DragnDrop;
+export default TrackDropzone;

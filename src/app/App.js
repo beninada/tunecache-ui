@@ -10,7 +10,7 @@ import About from '../components/About';
 import Users from '../components/Users';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
-import Upload from '../components/Upload';
+import UploadTrack from '../components/TrackUpload';
 import './App.css';
 // import logo from '../logo.svg';
 import JwtService from '../api/jwt.service';
@@ -44,7 +44,7 @@ const App = () => {
           <Login />
         </Route>
         <Route path="/upload">
-          <Upload />
+          <UploadTrack />
         </Route>
         <Route path="/">
           <Home />
