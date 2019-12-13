@@ -5,6 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 import { GENRES } from '../constants/genres';
 
 const UploadInformation = () => {
+  // eslint-disable-next-line
   const { track } = useSelector(
     (state) => state.trackUpload
   );

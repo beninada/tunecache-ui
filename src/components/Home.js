@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from './Layout';
+import Tracks from './Tracks';
 import { useSelector } from 'react-redux';
 
 const Home = () => {
@@ -15,6 +16,10 @@ const Home = () => {
       <p>
         {username && <span>Logged in as: {username}.</span>}
       </p>
+      {username &&
+      <Tracks>
+      </Tracks>
+      }
     </Layout>
   );
 };

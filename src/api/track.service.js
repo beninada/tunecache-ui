@@ -7,6 +7,12 @@ const TrackService = {
     }) => {
       const response = await authedAxiosInstance.post(`tracks/upload?user_id=${userId}`, tracks);
       return response.data;
+  },
+  getTracks: async ({
+    id
+  }) => {
+    const response = await authedAxiosInstance.get(`tracks?user_id=${id}`);
+      return response.data;
   }
 };
 
