@@ -1,4 +1,4 @@
-import { authedAxiosInstance } from './api.service';
+import { authedAxiosInstance, axiosInstance } from './api.service';
 
 const TrackService = {
   upload: async ({
@@ -11,7 +11,7 @@ const TrackService = {
   getTracks: async ({
     id
   }) => {
-    const response = await authedAxiosInstance.get(`tracks?user_id=${id}`);
+    const response = await axiosInstance.get(`tracks?user_id=${id}`);
       return response.data;
   }
 };

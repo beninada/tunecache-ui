@@ -13,13 +13,17 @@ const Home = () => {
       <p>
         This is the home page.
       </p>
-      <p>
-        {username && <span>Logged in as: {username}.</span>}
-      </p>
+
       {username &&
-      <Tracks>
-      </Tracks>
+        <div>
+          <p>
+            <span>Logged in as: {username}.</span>
+          </p>
+          <Tracks>
+          </Tracks>
+        </div>
       }
+
     </Layout>
   );
 };

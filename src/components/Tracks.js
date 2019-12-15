@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import TrackService from '../api/track.service';
 
@@ -20,11 +20,9 @@ const Tracks = () => {
     });
 
   }, []);
-  /* eslint-disable */
 
   return (
     <div>
-      <div>
         {tracks && tracks.map(track => {
           return <Card>
             <Card.Body>
@@ -38,8 +36,6 @@ const Tracks = () => {
 
           </Card>
         })}
-
-      </div>
     </div>
   );
 }
