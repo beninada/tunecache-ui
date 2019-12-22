@@ -32,6 +32,7 @@ const Header = () => {
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/users">Users Demo</Nav.Link>
           <Nav.Link as={Link} to="/about">About</Nav.Link>
+          <Nav.Link as={Link} to="/search">Search</Nav.Link>
         </Nav>
         <Nav className="header-right-nav">
           {!username &&
