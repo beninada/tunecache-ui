@@ -6,9 +6,6 @@ import { connectHits } from 'react-instantsearch-dom';
 
 const Hits = ({ hits }) => {
 
-  console.log({ hits });
-
-
   return (
 
     <div>
