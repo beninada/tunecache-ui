@@ -12,7 +12,7 @@ import {
 const Search = () => {
 
   const searchClient = algoliasearch(
-    process.env.REACT_APP_ALGOLIA_APP_ID, process.env.REACT_APP_ALGOLIA_SECRET_KEY
+    process.env.REACT_APP_ALGOLIA_APP_ID, process.env.REACT_APP_ALGOLIA_SEARCH_ONLY_KEY
   );
 
   return (
