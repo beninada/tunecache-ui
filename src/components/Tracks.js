@@ -29,7 +29,7 @@ const Tracks = () => {
               <Card.Title>{track.title}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">{track.bpm}</Card.Subtitle>
               <Card.Text>
-                {track.description} - created at {track.created_at}.
+                {track.uuid} - created at {track.created_at}.
               </Card.Text>
               <Card.Link href="#">{track.title}</Card.Link>
             </Card.Body>
