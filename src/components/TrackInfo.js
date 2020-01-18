@@ -3,11 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { GENRES } from '../constants/genres';
+import { SCALES } from '../constants/scales';
 import TrackService from '../api/track.service';
 import { useHistory } from 'react-router-dom';
 import { resetTrackUpload } from '../store/trackUpload.slice';
 
 const UploadInformation = () => {
+
+  const handleScaleChange = (selectedOption) => {
+    setScale(selectedOption.value);
+  };
+
   const dispatch = useDispatch();
 
   const tracks = useSelector(
@@ -15,6 +21,8 @@ const UploadInformation = () => {
   );
 
   const history = useHistory();
+  const [scale, setScale] = useState(null);
+  const [scales, setScales] = useState(null);
   const [genres, setGenres] = useState(null);
   const [errors, setErrors] = useState(null);
 
@@ -22,6 +30,10 @@ const UploadInformation = () => {
     setGenres(GENRES.map((genre, index) => ({
       label: genre,
       value: index,
+    })));
+    setScales(SCALES.map((scale, index) => ({
+      label: scale,
+      value: scale,
     })));
 
   }, []);
@@ -35,6 +47,7 @@ const UploadInformation = () => {
         description: event.target.trackDescription.value,
         bpm: event.target.trackBpm.value,
         key: event.target.trackKey.value,
+        scale: scale,
         duration: event.target.trackDuration.value, tracks
       });
       dispatch(resetTrackUpload());
@@ -72,6 +85,11 @@ const UploadInformation = () => {
           <Form.Group controlId="trackKey">
             <Form.Label>Key</Form.Label>
             <Form.Control type="text" placeholder="Track Key" />
+          </Form.Group>
+
+          <Form.Group controlId="scale">
+            <Form.Label>Scale</Form.Label>
+            <Select options={scales} onChange={handleScaleChange}/>
           </Form.Group>
 
           <Form.Group controlId="trackDuration">
