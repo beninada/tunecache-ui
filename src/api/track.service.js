@@ -16,9 +16,9 @@ const TrackService = {
     });
     return response.data;
 },
-  getTracks: async ({
+  getTracks: async (
     id
-  }) => {
+  ) => {
     const response = await axiosInstance.get(`tracks?user_id=${id}`);
       return response.data;
   }

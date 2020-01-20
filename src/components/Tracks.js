@@ -1,25 +1,10 @@
 
 
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ListGroup } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import TrackService from '../api/track.service';
 
-const Tracks = () => {
-
-  const id = useSelector(
-    (state) => state.loggedInUser
-  );
-
-  const [tracks, setTracks] = useState(null);
-
-  useEffect(() => {
-    TrackService.getTracks(id).then(tracks => {
-      setTracks(tracks);
-    });
-
-  }, [id]);
+const Tracks = ({tracks}) => {
 
   return (
     <ListGroup>
