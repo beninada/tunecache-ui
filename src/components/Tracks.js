@@ -15,7 +15,7 @@ const Tracks = () => {
   const [tracks, setTracks] = useState(null);
 
   useEffect(() => {
-    TrackService.getTracks({ 'id': id }).then(tracks => {
+    TrackService.getTracks({ id }).then(tracks => {
       setTracks(tracks);
     });
 

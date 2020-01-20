@@ -45,10 +45,12 @@ const UploadInformation = () => {
       await TrackService.update({
         title: event.target.trackTitle.value,
         description: event.target.trackDescription.value,
-        bpm: event.target.trackBpm.value,
+        bpm: parseInt(event.target.trackBpm.value),
         key: event.target.trackKey.value,
         scale: scale,
-        duration: event.target.trackDuration.value, tracks
+        duration: parseInt(event.target.trackDuration.value),
+        user_id: parseInt(tracks.tracks[0].user_id),
+        uuid: tracks.tracks[0].uuid
       });
       dispatch(resetTrackUpload());
       history.push('/');
