@@ -30,8 +30,9 @@ const Hits = ({ hits }) => {
             <td colSpan='8'>No track found.</td>
           </tr>
         }
-          {hits.length > 0 && hits.map(hit => (
-            <tr>
+          {hits.length > 0 && hits.map((hit, index) => (
+            <tr
+              key={index}>
               <th><Button variant="success">&#9658;</Button></th>
               <td>{hit.title}</td>
               <td>{hit.style}</td>
