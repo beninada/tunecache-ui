@@ -23,7 +23,7 @@ const Tracks = () => {
 
   return (
     <ListGroup>
-      {tracks !== null && tracks.map((track, index) => {
+      {tracks && tracks.map((track, index) => {
         return <ListGroup.Item
           key={index}>{track.uuid} - <small>created at {track.created_at}</small></ListGroup.Item>
       })}
