@@ -9,17 +9,17 @@ const TrackService = {
       return response.data;
   },
   update: async ({
-    title, description, bpm, key, duration, scale, user_id, uuid
+    title, description, bpm, key, duration, scale, userId, uuid
   }) => {
-    const response = await authedAxiosInstance.put(`tracks?user_id=${user_id}`, {
+    const response = await authedAxiosInstance.put(`tracks?user_id=${userId}`, {
       title, description, bpm, key, duration, scale, uuid
     });
     return response.data;
 },
   getTracks: async (
-    id
+    userId
   ) => {
-    const response = await axiosInstance.get(`tracks?user_id=${id}`);
+    const response = await axiosInstance.get(`tracks?user_id=${userId}`);
       return response.data;
   }
 };
