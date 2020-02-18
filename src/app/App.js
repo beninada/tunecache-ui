@@ -12,6 +12,7 @@ import Signup from '../components/Signup';
 import Login from '../components/Login';
 import TrackUpload from '../components/TrackUpload';
 import Search from '../components/Search';
+import CreatePlaylist from '../components/CreatePlaylist';
 import './App.css';
 // import logo from '../logo.svg';
 import JwtService from '../api/jwt.service';
@@ -46,6 +47,9 @@ const App = () => {
         </Route>
         <Route path="/upload">
           <TrackUpload />
+        </Route>
+        <Route path="/playlists/create">
+          <CreatePlaylist />
         </Route>
         <Route path="/search">
           <Search />
