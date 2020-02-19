@@ -2,17 +2,37 @@
 
 
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import {
+  useRouteMatch,
+  Switch,
+  Route,
+  Link,
+} from 'react-router-dom';
+import Playlist from './Playlist';
 
 const Playlists = ({playlists}) => {
 
+  let match = useRouteMatch();
+
+
   return (
-    <ListGroup>
-      {playlists && playlists.map((playlist, index) => {
-        return <ListGroup.Item
-          key={index}>{playlist.title} - <small>created at {playlist.created_at}</small></ListGroup.Item>
-      })}
-    </ListGroup>
+      <div>
+        <Switch>
+        <Route path={`${match.path}/:id`}>
+          <Playlist/>
+        </Route>
+        <Route path={match.path}>
+          <h4>Playlists</h4>
+          <ul>
+          {playlists && playlists.map((playlist, index) => {
+              return <li key={playlist.id}>
+                <Link to={`../playlists/${playlist.id}`}>{playlist.title}</Link>
+              </li>
+            })}
+          </ul>
+        </Route>
+      </Switch>
+      </div>
   );
 }
 

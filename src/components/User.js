@@ -40,7 +40,6 @@ const User = () => {
       }
       {playlists &&
       <div className="mt-4">
-      <h4>Playlists</h4>
         <Playlists playlists={playlists}>
         </Playlists>
         </div>

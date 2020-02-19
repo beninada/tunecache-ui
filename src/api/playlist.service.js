@@ -6,6 +6,12 @@ const PlaylistService = {
   ) => {
     const response = await axiosInstance.get(`users/${userId}/playlists`);
       return response.data;
+  },
+  getPlaylist: async (
+    playlistId
+  ) => {
+    const response = await axiosInstance.get(`playlists/${playlistId}`);
+      return response.data;
   }
 };
 
