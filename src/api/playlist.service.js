@@ -5,19 +5,27 @@ const PlaylistService = {
     userId
   ) => {
     const response = await axiosInstance.get(`users/${userId}/playlists`);
-      return response.data;
+    return response.data;
   },
   getPlaylist: async (
     playlistId
   ) => {
     const response = await axiosInstance.get(`playlists/${playlistId}`);
-      return response.data;
+    return response.data;
   },
   getPlaylistTracks: async (
     playlistId
   ) => {
     const response = await axiosInstance.get(`playlists/${playlistId}/tracks`);
-      return response.data;
+    return response.data;
+  },
+  createPlaylist: async ({
+    title, description, userId
+  }) => {
+    const response = await authedAxiosInstance.post(`users/${userId}/playlists`, {
+      title, description, user_id: userId
+    });
+    return response.data;
   }
 };
 
