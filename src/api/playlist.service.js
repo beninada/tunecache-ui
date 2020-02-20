@@ -12,6 +12,12 @@ const PlaylistService = {
   ) => {
     const response = await axiosInstance.get(`playlists/${playlistId}`);
       return response.data;
+  },
+  getPlaylistTracks: async (
+    playlistId
+  ) => {
+    const response = await axiosInstance.get(`playlists/${playlistId}/tracks`);
+      return response.data;
   }
 };
 
