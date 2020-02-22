@@ -16,14 +16,13 @@ const User = () => {
   useEffect(() => {
     UserService.artist(uri).then(artist => {
       setArtist(artist);
-      TrackService.getTracks(artist.id).then(tracks => {
-        setTracks(tracks);
-        PlaylistService.getPlaylists(artist.id).then(playlists => {
-          setPlaylists(playlists);
-        });
-      });
     });
-
+    TrackService.getTracks(artist.id).then(tracks => {
+      setTracks(tracks);
+    });
+    PlaylistService.getPlaylists(artist.id).then(playlists => {
+      setPlaylists(playlists);
+    });
   }, [uri]);
 
   return (
@@ -32,16 +31,16 @@ const User = () => {
       <div>URI: {artist && artist.uri}</div>
       <div>Email: {artist && artist.email}</div>
       {tracks &&
-      <div className="mt-4">
-        <h4>Tracks</h4>
-        <Tracks tracks={tracks}>
-        </Tracks>
+        <div className="mt-4">
+          <h4>Tracks</h4>
+          <Tracks tracks={tracks}>
+          </Tracks>
         </div>
       }
       {playlists &&
-      <div className="mt-4">
-        <Playlists playlists={playlists}>
-        </Playlists>
+        <div className="mt-4">
+          <Playlists playlists={playlists}>
+          </Playlists>
         </div>
       }
     </div>

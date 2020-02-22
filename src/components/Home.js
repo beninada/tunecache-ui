@@ -17,11 +17,10 @@ const Home = () => {
   useEffect(() => {
     TrackService.getTracks(id).then(tracks => {
       setTracks(tracks);
-      PlaylistService.getPlaylists(id).then(playlists => {
-        setPlaylists(playlists);
-      });
     });
-
+    PlaylistService.getPlaylists(id).then(playlists => {
+      setPlaylists(playlists);
+    });
   }, [id]);
 
   return (
