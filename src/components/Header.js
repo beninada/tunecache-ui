@@ -42,6 +42,7 @@ const Header = () => {
             </ButtonToolbar>}
           {username &&
             <Nav >
+            <Nav.Link as={Link} to="/playlists/create" variant="pills">Create Playlist</Nav.Link>
               <Nav.Link as={Link} to="/upload" variant="pills">Upload</Nav.Link>
               <NavDropdown title={username} className="header-right-dropdown">
                 <NavDropdown.Item as={Link} to={`/users/${uri}`}>My Profile</NavDropdown.Item>
