@@ -12,6 +12,14 @@ const UserService = {
   artist: async (uri) => {
     const response = await axiosInstance.get(`users/artist/${uri}/profile`);
     return response.data;
+  },
+  uploadImage: async ({
+    userId, file, type
+  }) => {
+    const response = await authedAxiosInstance.post(`users/${userId}/profile-image`, {
+      file, type
+    });
+    return response.data;
   }
 };
 
