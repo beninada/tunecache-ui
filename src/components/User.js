@@ -10,17 +10,21 @@ import Tracks from './Tracks';
 import Playlists from './Playlists';
 import default_picture from '../img/user.png';
 import {
-  Figure, Alert
+  Alert, Card, Button
 } from 'react-bootstrap';
 
 const User = () => {
+
+  const buttonRef = React.createRef();
 
   const [tracks, setTracks] = useState(null);
   const [artist, setArtist] = useState(null);
   const [playlists, setPlaylists] = useState(null);
   const [errors, setErrors] = useState(null);
 
-  let { uri } = useParams();
+  let {
+    uri
+  } = useParams();
 
   useEffect(() => {
     UserService.artist(uri).then(artist => {
@@ -35,62 +39,73 @@ const User = () => {
 
   }, [uri]);
 
-    const uploadImage = async (event) => {
-      event.preventDefault();
+  const uploadImage = async (event) => {
+    event.preventDefault();
+    try {
 
-      try{
+      var picture = event.target.files[0];
 
-        var picture = event.target.files[0];
+      var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
 
-        var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
-
-        if (validTypes.indexOf(picture.type) < 0) {
-          throw new Error('File extension not supported.');
-        }
-        if (picture.size / 1024 / 1024 >= 10) {
-          throw new Error('File is too big. Please upload a file greater or lower than 10MB.');
-        }
-
-        const formData = new FormData();
-
-        for (let i = 0; i < event.target.files.length; i++) {
-          formData.append('file', event.target.files[i]);
-        }
-
-        const image = await UserService.uploadImage({
-          file: formData,
-          userId: artist.id,
-          type: 'artist_profile'
-        });
-
-        alert('ok');
+      if (validTypes.indexOf(picture.type) < 0) {
+        throw new Error('File extension not supported.');
       }
-      catch(error){
-        console.error(error);
-        setErrors(error.response.data.message);
+      if (picture.size / 1024 / 1024 >= 10) {
+        throw new Error('File is too big. Please upload a file greater or lower than 10MB.');
       }
 
-      
-    };
+      var user = await UserService.uploadImage({
+        type: 'artist_profile',
+        file: picture,
+        userId: artist.id
+      });
+
+      setArtist(user);
+
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data.message);
+    }
+  };
+
+  const triggerInput = async () => {
+    buttonRef.current.click();
+  };
 
   return (
     <div>
-      {artist && 
-        <Figure>
-          <Figure.Image src = { artist.profile_image === null ? default_picture : artist.profile_image } />
-        </Figure>
-      }
+      
       <div>
-          <input type="file" accept=".jpg,.jpeg,.png" multiple={false} onChange={ uploadImage } />
-          <div className="mt-3">
-          {errors &&
-            <Alert variant="danger">{ errors }</Alert>
-          }
-        </div>
+        { artist &&
+        <Card style={{ width: '36rem' }}>
+          <Card.Img variant="top" src={ artist.profile_image === null ? default_picture : artist.profile_image } />
+          <Card.Body>
+            <Card.Title>{artist.username}</Card.Title>
+            <Card.Text>
+              URI: {artist.uri}
+            </Card.Text>
+            <Card.Text>
+              Email: {artist.email}
+            </Card.Text>
+            <div>
+              <input 
+              type="file" 
+              accept=".jpg,.jpeg,.png" 
+              multiple={false} 
+              onChange={ uploadImage } 
+              style={{display: 'none'}} 
+              ref={buttonRef} / >
+              <Button variant="primary" onClick={ triggerInput }>Upload Profile Image</Button>           
+            </div>
+            <div className="mt-3">
+              {errors &&
+                <Alert variant="danger">{ errors }</Alert>
+              }
+            </div>
+          </Card.Body>
+        </Card>
+        }
       </div>
-      <h3>{artist && artist.username}</h3>
-      <div>URI: {artist && artist.uri}</div>
-      <div>Email: {artist && artist.email}</div>
       {tracks &&
         <div className="mt-4">
           <h4>Tracks</h4>

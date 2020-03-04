@@ -1,4 +1,7 @@
-import { axiosInstance, authedAxiosInstance } from './api.service';
+import {
+  axiosInstance,
+  authedAxiosInstance
+} from './api.service';
 
 const UserService = {
   me: async () => {
@@ -14,11 +17,19 @@ const UserService = {
     return response.data;
   },
   uploadImage: async ({
-    userId, file, type
+    userId,
+    file,
+    type
   }) => {
-    const response = await authedAxiosInstance.post(`users/${userId}/profile-image`, {
-      file, type
-    });
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('type', type);
+    const response = await authedAxiosInstance.post(`users/${userId}/profile-image`,
+      formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
     return response.data;
   }
 };
