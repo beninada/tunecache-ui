@@ -24,7 +24,7 @@ const UserService = {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('type', type);
-    const response = await authedAxiosInstance.post(`users/${userId}/profile-image`,
+    const response = await authedAxiosInstance.post(`users/${userId}/images`,
       formData, {
         headers: {
           'Content-Type': 'multipart/form-data'

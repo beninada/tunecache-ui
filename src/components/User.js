@@ -48,10 +48,10 @@ const User = () => {
       var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
 
       if (validTypes.indexOf(picture.type) < 0) {
-        throw new Error('File extension not supported.');
+        throw 'File extension not supported.';
       }
       if (picture.size / 1024 / 1024 >= 10) {
-        throw new Error('File is too big. Please upload a file greater or lower than 10MB.');
+        throw 'File is too big. Please upload a file greater or lower than 10MB.';
       }
 
       var user = await UserService.uploadImage({
@@ -64,7 +64,7 @@ const User = () => {
 
     } catch (error) {
       console.error(error);
-      setErrors(error.response.data.message);
+      setErrors(typeof error === 'string' ? error : error.response.data.message);
     }
   };
 
@@ -74,7 +74,7 @@ const User = () => {
 
   return (
     <div>
-      
+
       <div>
         { artist &&
         <Card style={{ width: '36rem' }}>
@@ -88,14 +88,14 @@ const User = () => {
               Email: {artist.email}
             </Card.Text>
             <div>
-              <input 
-              type="file" 
-              accept=".jpg,.jpeg,.png" 
-              multiple={false} 
-              onChange={ uploadImage } 
-              style={{display: 'none'}} 
+              <input
+              type="file"
+              accept=".jpg,.jpeg,.png"
+              multiple={false}
+              onChange={ uploadImage }
+              style={{display: 'none'}}
               ref={buttonRef} / >
-              <Button variant="primary" onClick={ triggerInput }>Upload Profile Image</Button>           
+              <Button variant="primary" onClick={ triggerInput }>Upload Profile Image</Button>
             </div>
             <div className="mt-3">
               {errors &&
