@@ -51,7 +51,7 @@ const User = () => {
         throw 'File extension not supported.';
       }
       if (picture.size / 1024 / 1024 >= 10) {
-        throw 'File is too big. Please upload a file greater or lower than 10MB.';
+        throw 'File is too big. Please upload a file smaller than 10MB.';
       }
 
       var user = await UserService.uploadImage({
@@ -64,7 +64,7 @@ const User = () => {
 
     } catch (error) {
       console.error(error);
-      setErrors(typeof error === 'string' ? error : error.response.data.message);
+      setErrors(error.response.data.message);
     }
   };
 
