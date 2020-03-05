@@ -48,10 +48,10 @@ const User = () => {
       var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
 
       if (validTypes.indexOf(picture.type) < 0) {
-        throw 'File extension not supported.';
+        setErrors('File extension not supported.');
       }
       if (picture.size / 1024 / 1024 >= 10) {
-        throw 'File is too big. Please upload a file smaller than 10MB.';
+        setErrors('File is too big. Please upload a file smaller than 10MB.');
       }
 
       var user = await UserService.uploadImage({
