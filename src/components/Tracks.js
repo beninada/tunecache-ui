@@ -1,5 +1,4 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
 import {
   useRouteMatch,
   Switch,
@@ -18,17 +17,17 @@ const Tracks = ({tracks}) => {
           <Track />
         </Route>
         <Route path={match.url}>
-          <ListGroup>
-            {tracks && tracks.map((track, index) => {
-              return <ListGroup.Item
-                key={index}>
-                  <Link to={`${match.url}/tracks/${track.uuid}`}>{track.uuid} </Link>
-                  - <small>created at {track.created_at}</small></ListGroup.Item>
+          <ul>
+          { tracks && tracks.map((track, index) => {
+              return <li key = {
+                index
+              } >
+                <Link to={`${match.url}/tracks/${track.uuid}`}>{track.uuid}</Link>
+              </li>
             })}
-          </ListGroup>
+            </ul>
         </Route>
     </Switch>
-    
   );
 }
 

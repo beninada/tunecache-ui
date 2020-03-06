@@ -64,10 +64,12 @@ const Track = () => {
   };
 
   return (
-      <div>
-        {track && 
-          <div>
+    <div>
+
+        {track &&
+        < div >
             <Image src={ track.cover_image === null ? default_background : track.cover_image } rounded />
+              
               <div>
                 <input
                 type="file"
@@ -94,7 +96,9 @@ const Track = () => {
             <p>{track.uuid}</p>
           </div>
         }
-      </div>
+
+
+    < /div>
   );
 };
 

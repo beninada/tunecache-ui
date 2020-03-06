@@ -34,17 +34,15 @@ const User = () => {
       {tracks &&
         <div className="mt-4">
           <h4>Tracks</h4>
-          <Tracks tracks={tracks}>
-          </Tracks>
+          <Tracks tracks={tracks} />
         </div>
       }
       {playlists &&
         <div className="mt-4">
-          <Playlists playlists={playlists}>
-          </Playlists>
+          <Playlists playlists={playlists} />
         </div>
       }
-    </div>
+    < /div>
   );
 };
 
