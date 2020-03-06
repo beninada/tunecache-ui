@@ -16,13 +16,14 @@ const User = () => {
   useEffect(() => {
     UserService.artist(uri).then(artist => {
       setArtist(artist);
+      TrackService.getTracks(artist.id).then(tracks => {
+        setTracks(tracks);
+      });
+      PlaylistService.getPlaylists(artist.id).then(playlists => {
+        setPlaylists(playlists);
+      });
     });
-    TrackService.getTracks(artist.id).then(tracks => {
-      setTracks(tracks);
-    });
-    PlaylistService.getPlaylists(artist.id).then(playlists => {
-      setPlaylists(playlists);
-    });
+    
   }, [uri]);
 
   return (

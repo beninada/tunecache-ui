@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
+  Route
 } from 'react-router-dom';
 import Home from '../components/Home';
 import About from '../components/About';
@@ -21,6 +21,7 @@ import UserService from '../api/user.service';
 import { setLoggedInUser } from '../store/loggedInUser.slice';
 
 const App = () => {
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const App = () => {
         </Route>
         <Route path="/login">
           <Login />
-        </Route>
+        </Route>       
         <Route path="/upload">
           <TrackUpload />
         </Route>
