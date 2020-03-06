@@ -41,31 +41,33 @@ const User = () => {
 
   const uploadImage = async (event) => {
     event.preventDefault();
+
+    var picture = event.target.files[0];
+    var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+
+    if (validTypes.indexOf(picture.type) < 0) {
+      setErrors('File extension not supported.');
+      return;
+    }
+
+    if (picture.size / 1024 / 1024 >= 10) {
+      setErrors('File is too big. Please upload a file smaller than 10MB.');
+      return;
+    }
+
     try {
-
-      var picture = event.target.files[0];
-
-      var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
-
-      if (validTypes.indexOf(picture.type) < 0) {
-        setErrors('File extension not supported.');
-      }
-      if (picture.size / 1024 / 1024 >= 10) {
-        setErrors('File is too big. Please upload a file smaller than 10MB.');
-      }
-
       var user = await UserService.uploadImage({
         type: 'artist_profile',
         file: picture,
         userId: artist.id
       });
-
-      setArtist(user);
-
     } catch (error) {
       console.error(error);
       setErrors(error.response.data.message);
+      return;
     }
+
+    setArtist(user);
   };
 
   const triggerInput = async () => {
