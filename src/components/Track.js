@@ -8,7 +8,7 @@ import {
 import TrackService from '../api/track.service';
 import {
   Alert,
-  Button, 
+  Button,
   Image
 } from 'react-bootstrap';
 import default_background from '../img/bg.jpg';
@@ -69,7 +69,7 @@ const Track = () => {
         {track &&
         < div >
             <Image src={ track.cover_image === null ? default_background : track.cover_image } rounded />
-              
+
               <div>
                 <input
                 type="file"
@@ -89,11 +89,10 @@ const Track = () => {
             <br/>
             <h3>{track.title}</h3>
             <h5>{track.description}</h5>
-            <p>{track.bpm}</p>
-            <p>{track.key}</p>
-            <p>{track.scale}</p>
-            <p>{track.bpm}</p>
-            <p>{track.uuid}</p>
+            <p><label>BPM:</label> {track.bpm}</p>
+            <p><label>Key:</label> {track.key}</p>
+            <p><label>Scale:</label> {track.scale}</p>
+            <p><label>Date Created:</label> {track.created_at}</p>
           </div>
         }
 
