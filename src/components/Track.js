@@ -52,6 +52,7 @@ const Track = () => {
       });
 
       setTrack(updatedTrack);
+      window.location.reload();
 
     } catch (error) {
       console.error(error);

@@ -23,7 +23,7 @@ const Playlist = () => {
   }, [id]);
 
   return (
-    <Layout>
+    <div>
       {playlist &&
         <div>
           <h3>{playlist.title}</h3>
@@ -34,7 +34,7 @@ const Playlist = () => {
         <Tracks tracks={tracks}>
         </Tracks>
       }
-    </Layout>
+    </div>
   );
 };
 

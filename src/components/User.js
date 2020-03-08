@@ -23,7 +23,7 @@ const User = () => {
         setPlaylists(playlists);
       });
     });
-    
+
   }, [uri]);
 
   return (
@@ -33,7 +33,6 @@ const User = () => {
       <div>Email: {artist && artist.email}</div>
       {tracks &&
         <div className="mt-4">
-          <h4>Tracks</h4>
           <Tracks tracks={tracks} />
         </div>
       }
