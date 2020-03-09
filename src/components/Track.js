@@ -31,33 +31,37 @@ const Track = () => {
   }, [uuid]);
 
   const uploadImage = async (event) => {
+     
     event.preventDefault();
+
+     var picture = event.target.files[0];
+     var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+
+     if (validTypes.indexOf(picture.type) < 0) {
+       setErrors('File extension not supported.');
+       return;
+     }
+
+     if (picture.size / 1024 / 1024 >= 10) {
+       setErrors('File is too big. Please upload a file smaller than 10MB.');
+       return;
+     }
+
     try {
 
-      var picture = event.target.files[0];
-
-      var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
-
-      if (validTypes.indexOf(picture.type) < 0) {
-        setErrors('File extension not supported.');
-      }
-      if (picture.size / 1024 / 1024 >= 10) {
-        setErrors('File is too big. Please upload a file smaller than 10MB.');
-      }
-
-      let updatedTrack = await TrackService.uploadArtwork({
+      var updatedTrack = await TrackService.uploadArtwork({
         file: picture,
         userId: track.user_id,
         trackId: track.id
       });
 
-      setTrack(updatedTrack);
-      window.location.reload();
-
     } catch (error) {
       console.error(error);
       setErrors(error.response.data.message);
+      return;
     }
+
+    setTrack(updatedTrack);
   };
 
   const triggerInput = async () => {
@@ -68,7 +72,7 @@ const Track = () => {
     <div>
 
         {track &&
-        < div >
+        <div>
             <Image src={ track.cover_image === null ? default_background : track.cover_image } rounded />
 
               <div>
@@ -98,7 +102,7 @@ const Track = () => {
         }
 
 
-    < /div>
+    </div>
   );
 };
 

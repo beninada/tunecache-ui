@@ -3,7 +3,6 @@ import {
   useParams
 } from 'react-router-dom';
 import PlaylistService from '../api/playlist.service';
-import Layout from './Layout';
 import Tracks from './Tracks';
 
 const Playlist = () => {
