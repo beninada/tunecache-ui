@@ -49,7 +49,7 @@ const UploadInformation = () => {
         key: event.target.trackKey.value,
         scale: scale,
         duration: parseInt(event.target.trackDuration.value),
-        user_id: parseInt(tracks.tracks[0].user_id),
+        userId: parseInt(tracks.tracks[0].user_id),
         uuid: tracks.tracks[0].uuid
       });
       dispatch(resetTrackUpload());

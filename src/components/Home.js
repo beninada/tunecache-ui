@@ -39,7 +39,6 @@ const Home = () => {
           </div>
 
           <div className="mt-3">
-            <h4>Tracks</h4>
             <Tracks tracks={tracks}>
             </Tracks>
           </div>

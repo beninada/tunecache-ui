@@ -21,6 +21,27 @@ const TrackService = {
   ) => {
     const response = await axiosInstance.get(`tracks?user_id=${userId}`);
       return response.data;
+  },
+  getTrack: async (
+    uuid
+  ) => {
+    const response = await axiosInstance.get(`tracks/${uuid}`);
+    return response.data;
+  },
+  uploadArtwork: async({
+    file, userId, trackId
+  }) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('user_id', userId);
+    formData.append('track_id', trackId);
+    const response = await authedAxiosInstance.post(`tracks/${trackId}/cover-art`,
+      formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+    return response.data;
   }
 };
 

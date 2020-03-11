@@ -3,7 +3,6 @@ import {
   useParams
 } from 'react-router-dom';
 import PlaylistService from '../api/playlist.service';
-import Layout from './Layout';
 import Tracks from './Tracks';
 
 const Playlist = () => {
@@ -23,7 +22,7 @@ const Playlist = () => {
   }, [id]);
 
   return (
-    <Layout>
+    <div>
       {playlist &&
         <div>
           <h3>{playlist.title}</h3>
@@ -34,7 +33,7 @@ const Playlist = () => {
         <Tracks tracks={tracks}>
         </Tracks>
       }
-    </Layout>
+    </div>
   );
 };
 
