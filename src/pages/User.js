@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Alert, Card, Button } from "react-bootstrap";
 import UserService from "../api/user.service";
 import TrackService from "../api/track.service";
 import PlaylistService from "../api/playlist.service";
-import Tracks from "./Tracks";
-import Playlists from "./Playlists";
-import default_picture from "../img/user.png";
-import { Alert, Card, Button } from "react-bootstrap";
+import Layout from "../components/Layout";
+import TrackList from "../components/TrackList";
+import PlaylistList from "../components/PlaylistList";
+import default_picture from "../static/images/user.png";
 
 const User = () => {
   const buttonRef = React.createRef();
@@ -66,7 +67,7 @@ const User = () => {
   };
 
   return (
-    <div>
+    <Layout>
       <div>
         {artist && (
           <Card style={{ width: "36rem" }}>
@@ -105,16 +106,18 @@ const User = () => {
       <div>
         {tracks && (
           <div className="mt-4">
-            <Tracks tracks={tracks} />
+            <h2>Tracks</h2>
+            <TrackList tracks={tracks} />
           </div>
         )}
         {playlists && (
           <div className="mt-4">
-            <Playlists playlists={playlists} />
+            <h2>Playlists</h2>
+            <PlaylistList playlists={playlists} />
           </div>
         )}
       </div>
-    </div>
+    </Layout>
   );
 };
 

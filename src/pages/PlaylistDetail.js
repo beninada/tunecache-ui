@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PlaylistService from "../api/playlist.service";
-import Tracks from "./Tracks";
+import TrackList from "../components/TrackList";
+import Layout from "../components/Layout";
 
-const Playlist = () => {
+const PlaylistDetail = () => {
   const [playlist, setPlaylist] = useState(null);
   const [tracks, setTracks] = useState(null);
 
@@ -19,16 +20,16 @@ const Playlist = () => {
   }, [id]);
 
   return (
-    <div>
+    <Layout>
       {playlist && (
         <div>
           <h3>{playlist.title}</h3>
           <p>{playlist.description}</p>
         </div>
       )}
-      {tracks && <Tracks tracks={tracks}></Tracks>}
-    </div>
+      {tracks && <TrackList tracks={tracks}></TrackList>}
+    </Layout>
   );
 };
 
-export default Playlist;
+export default PlaylistDetail;

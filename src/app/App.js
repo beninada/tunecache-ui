@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "../components/Home";
-import About from "../components/About";
-import Users from "../components/Users";
-import Signup from "../components/Signup";
-import Login from "../components/Login";
-import TrackUpload from "../components/TrackUpload";
-import Search from "../components/Search";
-import Playlists from "../components/Playlists";
-import CreatePlaylist from "../components/CreatePlaylist";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import User from "../pages/User";
+import Signup from "../pages/Signup";
+import Login from "../pages/Login";
+import TrackDetail from "../pages/TrackDetail";
+import TrackUpload from "../pages/TrackUpload";
+import Search from "../pages/Search";
+import PlaylistDetail from "../pages/PlaylistDetail";
+import CreatePlaylist from "../pages/CreatePlaylist";
 import "./App.css";
 // import logo from '../logo.svg';
 import JwtService from "../api/jwt.service";
@@ -33,9 +34,6 @@ const App = () => {
         <Route path="/about">
           <About />
         </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
         <Route path="/signup">
           <Signup />
         </Route>
@@ -45,14 +43,20 @@ const App = () => {
         <Route path="/upload">
           <TrackUpload />
         </Route>
-        <Route path="/playlists/create">
-          <CreatePlaylist />
+        <Route path="/tracks/:uuid">
+          <TrackDetail />
         </Route>
         <Route path="/search">
           <Search />
         </Route>
-        <Route path="/playlists">
-          <Playlists />
+        <Route path="/playlists/create">
+          <CreatePlaylist />
+        </Route>
+        <Route path="/playlists/:id">
+          <PlaylistDetail />
+        </Route>
+        <Route path="/users/:uri">
+          <User />
         </Route>
         <Route path="/">
           <Home />

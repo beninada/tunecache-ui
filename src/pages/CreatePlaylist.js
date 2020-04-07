@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import Layout from "./Layout";
+import Layout from "../components/Layout";
 import { Form, Button, Alert } from "react-bootstrap";
 import PlaylistService from "../api/playlist.service";
 import { useHistory } from "react-router-dom";
@@ -29,27 +29,25 @@ const CreatePlaylist = () => {
 
   return (
     <Layout>
-      <div>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="playlistTitle">
-            <Form.Label>Title</Form.Label>
-            <Form.Control type="text" placeholder="Playlist Title" />
-          </Form.Group>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="playlistTitle">
+          <Form.Label>Title</Form.Label>
+          <Form.Control type="text" placeholder="Playlist Title" />
+        </Form.Group>
 
-          <Form.Group controlId="playlistDescription">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows="3"
-              placeholder="Playlist Description"
-            />
-          </Form.Group>
+        <Form.Group controlId="playlistDescription">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            placeholder="Playlist Description"
+          />
+        </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </div>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
 
       <div className="mt-3">
         {errors &&

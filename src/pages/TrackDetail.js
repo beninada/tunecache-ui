@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import TrackService from "../api/track.service";
 import { Alert, Button, Image } from "react-bootstrap";
-import default_background from "../img/bg.jpg";
+import Layout from "../components/Layout";
+import TrackService from "../api/track.service";
+import default_background from "../static/images/bg.jpg";
 
-const Track = () => {
+const TrackDetail = () => {
   let { uuid } = useParams();
 
   const buttonRef = React.createRef();
@@ -54,7 +55,7 @@ const Track = () => {
   };
 
   return (
-    <div>
+    <Layout>
       {track && (
         <div>
           <Image
@@ -86,22 +87,14 @@ const Track = () => {
           <br />
           <h3>{track.title}</h3>
           <h5>{track.description}</h5>
-          <p>
-            <label>BPM:</label> {track.bpm}
-          </p>
-          <p>
-            <label>Key:</label> {track.key}
-          </p>
-          <p>
-            <label>Scale:</label> {track.scale}
-          </p>
-          <p>
-            <label>Date Created:</label> {track.created_at}
-          </p>
+          <div>BPM: {track.bpm}</div>
+          <div>Key: {track.key}</div>
+          <div>Scale: {track.scale}</div>
+          <div>Date Created: {track.created_at}</div>
         </div>
       )}
-    </div>
+    </Layout>
   );
 };
 
-export default Track;
+export default TrackDetail;

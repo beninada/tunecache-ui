@@ -8,7 +8,7 @@ import TrackService from "../api/track.service";
 import { useHistory } from "react-router-dom";
 import { resetTrackUpload } from "../store/trackUpload.slice";
 
-const UploadInformation = () => {
+const TrackInfo = () => {
   const handleScaleChange = (selectedOption) => {
     setScale(selectedOption.value);
   };
@@ -121,4 +121,4 @@ const UploadInformation = () => {
   );
 };
 
-export default UploadInformation;
+export default TrackInfo;

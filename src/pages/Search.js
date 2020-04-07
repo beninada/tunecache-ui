@@ -1,8 +1,7 @@
 import React from "react";
-import Layout from "./Layout";
-import Hits from "./Hits";
+import Layout from "../components/Layout";
+import SearchHits from "../components/SearchHits";
 import algoliasearch from "algoliasearch/lite";
-// Update the import
 import { InstantSearch, SearchBox } from "react-instantsearch-dom";
 
 const Search = () => {
@@ -16,7 +15,7 @@ const Search = () => {
       <InstantSearch searchClient={searchClient} indexName="dev_tracks">
         <SearchBox />
         <br />
-        <Hits />
+        <SearchHits />
       </InstantSearch>
     </Layout>
   );

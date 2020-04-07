@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Layout from "./Layout";
-import TrackInfo from "./TrackInfo";
-import TrackDropzone from "./TrackDropzone";
+import Layout from "../components/Layout";
+import TrackInfo from "../components/TrackInfo";
+import TrackDropzone from "../components/TrackDropzone";
 
 const Upload = () => {
   const { tracks, loading } = useSelector((state) => state.trackUpload);
@@ -15,8 +15,8 @@ const Upload = () => {
       {tracks && !tracks.length && !loading ? (
         <TrackDropzone></TrackDropzone>
       ) : (
-        ""
-      )}
+          ""
+        )}
       {tracks && tracks.length ? <TrackInfo></TrackInfo> : ""}
     </Layout>
   );

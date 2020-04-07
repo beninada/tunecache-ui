@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Layout from "./Layout";
-import Tracks from "./Tracks";
-import Playlists from "./Playlists";
+import Layout from "../components/Layout";
+import TrackList from "../components/TrackList";
+import PlaylistList from "../components/PlaylistList";
 import { useSelector } from "react-redux";
 import TrackService from "../api/track.service";
 import PlaylistService from "../api/playlist.service";
@@ -31,10 +31,12 @@ const Home = () => {
         <div>
           <div>Logged in as: {loggedInUser.username}.</div>
           <div className="mt-3">
-            <Tracks tracks={tracks}></Tracks>
+            <h2>{`${loggedInUser.username}'s Tracks`}</h2>
+            <TrackList tracks={tracks}></TrackList>
           </div>
           <div className="mt-3">
-            <Playlists playlists={playlists}></Playlists>
+            <h2>{`${loggedInUser.username}'s Playlists`}</h2>
+            <PlaylistList playlists={playlists}></PlaylistList>
           </div>
         </div>
       )}
