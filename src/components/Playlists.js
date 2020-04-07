@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import {
   useRouteMatch,
@@ -14,25 +11,22 @@ const Playlists = ({playlists}) => {
 
   let match = useRouteMatch();
 
-
   return (
-      <div>
-        <Switch>
-        <Route path={`${match.path}/:id`}>
-          <Playlist/>
-        </Route>
-        <Route path={match.path}>
-          <h4>Playlists</h4>
-          <ul>
-          {playlists && playlists.map((playlist, index) => {
-              return <li key={playlist.id}>
-                <Link to={`../playlists/${playlist.id}`}>{playlist.title}</Link>
-              </li>
-            })}
-          </ul>
-        </Route>
-      </Switch>
-      </div>
+    <Switch>
+      <Route path={`${match.path}/:id`}>
+        <Playlist/>
+      </Route>
+      <Route path={match.path}>
+        <h4>Playlists</h4>
+        <ul>
+        {playlists && playlists.map((playlist, index) => {
+            return <li key={playlist.id}>
+              <Link to={`../playlists/${playlist.id}`}>{playlist.title}</Link>
+            </li>
+          })}
+        </ul>
+      </Route>
+    </Switch>
   );
 }
 

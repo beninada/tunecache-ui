@@ -13,21 +13,21 @@ const Tracks = ({tracks}) => {
 
   return (
     <Switch>
-        <Route path={`${match.url}/tracks/:uuid`}>
-          <Track />
-        </Route>
-        <Route path={match.url}>
-        <h4>Tracks</h4>
-          <ul>
+      <Route path={`${match.url}/tracks/:uuid`}>
+        <Track />
+      </Route>
+      <Route path={match.url}>
+      <h4>Tracks</h4>
+        <ul>
           { tracks && tracks.map((track, index) => {
-              return <li key = {
-                index
-              } >
-                <Link to={`${match.url}/tracks/${track.uuid}`}>{track.uuid}</Link>
-              </li>
-            })}
-            </ul>
-        </Route>
+            return <li key = {
+              index
+            } >
+              <Link to={`${match.url}/tracks/${track.uuid}`}>{track.uuid}</Link>
+            </li>
+          })}
+        </ul>
+      </Route>
     </Switch>
   );
 }

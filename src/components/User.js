@@ -42,8 +42,8 @@ const User = () => {
   const uploadImage = async (event) => {
     event.preventDefault();
 
-    var picture = event.target.files[0];
-    var validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+    let picture = event.target.files[0];
+    let validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
 
     if (validTypes.indexOf(picture.type) < 0) {
       setErrors('File extension not supported.');
@@ -76,49 +76,50 @@ const User = () => {
 
   return (
     <div>
-
       <div>
         { artist &&
-        <Card style={{ width: '36rem' }}>
-          <Card.Img variant="top" src={ artist.profile_image === null ? default_picture : artist.profile_image } />
-          <Card.Body>
-            <Card.Title>{artist.username}</Card.Title>
-            <Card.Text>
-              URI: {artist.uri}
-            </Card.Text>
-            <Card.Text>
-              Email: {artist.email}
-            </Card.Text>
-            <div>
-              <input
-              type="file"
-              accept=".jpg,.jpeg,.png"
-              multiple={false}
-              onChange={ uploadImage }
-              style={{display: 'none'}}
-              ref={buttonRef} / >
-              <Button variant="primary" onClick={ triggerInput }>Upload Profile Image</Button>
-            </div>
-            <div className="mt-3">
-              {errors &&
-                <Alert variant="danger">{ errors }</Alert>
-              }
-            </div>
-          </Card.Body>
-        </Card>
+          <Card style={{ width: '36rem' }}>
+            <Card.Img variant="top" src={ artist.profile_image === null ? default_picture : artist.profile_image } />
+            <Card.Body>
+              <Card.Title>{artist.username}</Card.Title>
+              <Card.Text>
+                URI: {artist.uri}
+              </Card.Text>
+              <Card.Text>
+                Email: {artist.email}
+              </Card.Text>
+              <div>
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png"
+                  multiple={false}
+                  onChange={ uploadImage }
+                  style={{display: 'none'}}
+                  ref={buttonRef} />
+                <Button variant="primary" onClick={ triggerInput }>Upload Profile Image</Button>
+              </div>
+              <div className="mt-3">
+                { errors &&
+                  <Alert variant="danger">{ errors }</Alert>
+                }
+              </div>
+            </Card.Body>
+          </Card>
         }
       </div>
-      {tracks &&
-        <div className="mt-4">
-          <Tracks tracks={tracks} />
-        </div>
-      }
-      {playlists &&
-        <div className="mt-4">
-          <Playlists playlists={playlists} />
-        </div>
-      }
-    < /div>
+      <div>
+        { tracks &&
+          <div className="mt-4">
+            <Tracks tracks={ tracks } />
+          </div>
+        }
+        { playlists &&
+          <div className="mt-4">
+            <Playlists playlists={ playlists } />
+          </div>
+        }
+      </div>
+    </div>
   );
 };
 
