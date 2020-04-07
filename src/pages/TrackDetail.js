@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { Alert, Button, Image } from "react-bootstrap";
 import Layout from "../components/Layout";
 import TrackService from "../api/track.service";
-import default_background from "../static/images/bg.jpg";
 
 const TrackDetail = () => {
   let { uuid } = useParams();
@@ -61,7 +60,7 @@ const TrackDetail = () => {
           <Image
             src={
               track.cover_image === null
-                ? default_background
+                ? `${process.env.PUBLIC_URL}/default_track_cover.jpg`
                 : track.cover_image
             }
             rounded

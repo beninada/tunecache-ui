@@ -7,7 +7,6 @@ import PlaylistService from "../api/playlist.service";
 import Layout from "../components/Layout";
 import TrackList from "../components/TrackList";
 import PlaylistList from "../components/PlaylistList";
-import default_picture from "../static/images/user.png";
 
 const User = () => {
   const buttonRef = React.createRef();
@@ -75,7 +74,7 @@ const User = () => {
               variant="top"
               src={
                 artist.profile_image === null
-                  ? default_picture
+                  ? `${process.env.PUBLIC_URL}/default_user_profile.png`
                   : artist.profile_image
               }
             />
