@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  Button,
-  Form,
-  Alert,
-} from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
-import AuthService from '../api/auth.service';
-import { setLoggedInUser } from '../store/loggedInUser.slice';
-import Layout from './Layout';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Button, Form, Alert } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import AuthService from "../api/auth.service";
+import { setLoggedInUser } from "../store/loggedInUser.slice";
+import Layout from "./Layout";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -24,7 +20,7 @@ const Login = () => {
         password: event.target.password.value,
       });
       dispatch(setLoggedInUser(loggedInUser));
-      history.push('/');
+      history.push("/");
     } catch (error) {
       console.error(error);
       setErrors(error.response.data.errors);
@@ -34,7 +30,7 @@ const Login = () => {
   return (
     <Layout>
       <h1 className="text-center font-weight-bold">Log In</h1>
-      <Form onSubmit={ handleSubmit }>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" />
@@ -48,9 +44,12 @@ const Login = () => {
         </Button>
       </Form>
       <div className="mt-3">
-        {errors && errors.map((error, index) =>
-          <Alert variant="danger" key={ index }>{ error }</Alert>
-        )}
+        {errors &&
+          errors.map((error, index) => (
+            <Alert variant="danger" key={index}>
+              {error}
+            </Alert>
+          ))}
       </div>
     </Layout>
   );

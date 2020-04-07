@@ -12,7 +12,6 @@ code {
     monospace;
 }
 
-
 /* Manual Bootstrap override - keep dropdown menu on screen */
 .header-right-dropdown .dropdown-menu {
   left: auto;
