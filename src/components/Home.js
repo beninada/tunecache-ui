@@ -7,7 +7,7 @@ import TrackService from '../api/track.service';
 import PlaylistService from '../api/playlist.service';
 
 const Home = () => {
-  const { username, id } = useSelector(
+  const loggedInUser = useSelector(
     (state) => state.loggedInUser
   );
 
@@ -15,13 +15,15 @@ const Home = () => {
   const [playlists, setPlaylists] = useState(null);
 
   useEffect(() => {
-    TrackService.getTracks(id).then(tracks => {
-      setTracks(tracks);
-    });
-    PlaylistService.getPlaylists(id).then(playlists => {
-      setPlaylists(playlists);
-    });
-  }, [id]);
+    if (loggedInUser.id) {
+      TrackService.getTracks(loggedInUser.id).then(tracks => {
+        setTracks(tracks);
+      });
+      PlaylistService.getPlaylists(loggedInUser.id).then(playlists => {
+        setPlaylists(playlists);
+      });
+    }
+  }, [loggedInUser]);
 
   return (
     <Layout>
@@ -29,27 +31,21 @@ const Home = () => {
         This is the home page.
       </p>
 
-      {username && tracks && playlists &&
+      { loggedInUser.username && tracks && playlists &&
         <div>
-
           <div>
-            <p>
-              <span>Logged in as: {username}.</span>
-            </p>
+            Logged in as: {loggedInUser.username}.
           </div>
-
           <div className="mt-3">
             <Tracks tracks={tracks}>
             </Tracks>
           </div>
-
           <div className="mt-3">
             <Playlists playlists={playlists}>
             </Playlists>
           </div>
         </div>
       }
-
     </Layout>
   );
 };
