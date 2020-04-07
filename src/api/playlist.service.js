@@ -1,32 +1,29 @@
-import { authedAxiosInstance, axiosInstance } from './api.service';
+import { authedAxiosInstance, axiosInstance } from "./api.service";
 
 const PlaylistService = {
-  getPlaylists: async (
-    userId
-  ) => {
+  getPlaylists: async (userId) => {
     const response = await axiosInstance.get(`users/${userId}/playlists`);
     return response.data;
   },
-  getPlaylist: async (
-    playlistId
-  ) => {
+  getPlaylist: async (playlistId) => {
     const response = await axiosInstance.get(`playlists/${playlistId}`);
     return response.data;
   },
-  getPlaylistTracks: async (
-    playlistId
-  ) => {
+  getPlaylistTracks: async (playlistId) => {
     const response = await axiosInstance.get(`playlists/${playlistId}/tracks`);
     return response.data;
   },
-  createPlaylist: async ({
-    title, description, userId
-  }) => {
-    const response = await authedAxiosInstance.post(`users/${userId}/playlists`, {
-      title, description, user_id: userId
-    });
+  createPlaylist: async ({ title, description, userId }) => {
+    const response = await authedAxiosInstance.post(
+      `users/${userId}/playlists`,
+      {
+        title,
+        description,
+        user_id: userId,
+      }
+    );
     return response.data;
-  }
+  },
 };
 
 export default PlaylistService;

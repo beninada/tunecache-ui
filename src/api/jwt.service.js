@@ -1,8 +1,5 @@
-import {
-  ACCESS_TOKEN_KEY,
-  ACCESS_TOKEN_EXPIRES_IN,
-} from '../constants/auth';
-import Cookies from 'js-cookie';
+import { ACCESS_TOKEN_KEY, ACCESS_TOKEN_EXPIRES_IN } from "../constants/auth";
+import Cookies from "js-cookie";
 
 const JwtService = {
   getToken: () => {

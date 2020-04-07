@@ -1,1 +1,1 @@
-export const SCALES = ['major', 'minor'];
+export const SCALES = ["major", "minor"];

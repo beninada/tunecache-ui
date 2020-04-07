@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
   tracks: [],
@@ -6,7 +6,7 @@ let initialState = {
 };
 
 const trackUpload = createSlice({
-  name: 'trackUpload',
+  name: "trackUpload",
   initialState,
   reducers: {
     setTrackUpload(state, action) {
@@ -24,7 +24,7 @@ const trackUpload = createSlice({
 export const {
   setTrackUpload,
   setTrackUploadLoading,
-  resetTrackUpload
+  resetTrackUpload,
 } = trackUpload.actions;
 
 export default trackUpload.reducer;

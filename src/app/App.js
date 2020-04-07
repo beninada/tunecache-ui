@@ -1,27 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
-import Home from '../components/Home';
-import About from '../components/About';
-import Users from '../components/Users';
-import Signup from '../components/Signup';
-import Login from '../components/Login';
-import TrackUpload from '../components/TrackUpload';
-import Search from '../components/Search';
-import Playlists from '../components/Playlists';
-import CreatePlaylist from '../components/CreatePlaylist';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "../components/Home";
+import About from "../components/About";
+import Users from "../components/Users";
+import Signup from "../components/Signup";
+import Login from "../components/Login";
+import TrackUpload from "../components/TrackUpload";
+import Search from "../components/Search";
+import Playlists from "../components/Playlists";
+import CreatePlaylist from "../components/CreatePlaylist";
+import "./App.css";
 // import logo from '../logo.svg';
-import JwtService from '../api/jwt.service';
-import UserService from '../api/user.service';
-import { setLoggedInUser } from '../store/loggedInUser.slice';
+import JwtService from "../api/jwt.service";
+import UserService from "../api/user.service";
+import { setLoggedInUser } from "../store/loggedInUser.slice";
 
 const App = () => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,7 +25,7 @@ const App = () => {
         dispatch(setLoggedInUser(loggedInUser));
       });
     }
-  }, [ dispatch ]);
+  }, [dispatch]);
 
   return (
     <Router>
@@ -46,7 +41,7 @@ const App = () => {
         </Route>
         <Route path="/login">
           <Login />
-        </Route>       
+        </Route>
         <Route path="/upload">
           <TrackUpload />
         </Route>

@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Select from 'react-select';
-import { Form, Button, Alert } from 'react-bootstrap';
-import { GENRES } from '../constants/genres';
-import { SCALES } from '../constants/scales';
-import TrackService from '../api/track.service';
-import { useHistory } from 'react-router-dom';
-import { resetTrackUpload } from '../store/trackUpload.slice';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Select from "react-select";
+import { Form, Button, Alert } from "react-bootstrap";
+import { GENRES } from "../constants/genres";
+import { SCALES } from "../constants/scales";
+import TrackService from "../api/track.service";
+import { useHistory } from "react-router-dom";
+import { resetTrackUpload } from "../store/trackUpload.slice";
 
 const UploadInformation = () => {
-
   const handleScaleChange = (selectedOption) => {
     setScale(selectedOption.value);
   };
 
   const dispatch = useDispatch();
 
-  const tracks = useSelector(
-    (state) => state.trackUpload
-  );
+  const tracks = useSelector((state) => state.trackUpload);
 
   const history = useHistory();
   const [scale, setScale] = useState(null);
@@ -27,15 +24,18 @@ const UploadInformation = () => {
   const [errors, setErrors] = useState(null);
 
   useEffect(() => {
-    setGenres(GENRES.map((genre, index) => ({
-      label: genre,
-      value: index,
-    })));
-    setScales(SCALES.map((scale, index) => ({
-      label: scale,
-      value: scale,
-    })));
-
+    setGenres(
+      GENRES.map((genre, index) => ({
+        label: genre,
+        value: index,
+      }))
+    );
+    setScales(
+      SCALES.map((scale, index) => ({
+        label: scale,
+        value: scale,
+      }))
+    );
   }, []);
 
   const handleSubmit = async (event) => {
@@ -50,10 +50,10 @@ const UploadInformation = () => {
         scale: scale,
         duration: parseInt(event.target.trackDuration.value),
         userId: parseInt(tracks.tracks[0].user_id),
-        uuid: tracks.tracks[0].uuid
+        uuid: tracks.tracks[0].uuid,
       });
       dispatch(resetTrackUpload());
-      history.push('/');
+      history.push("/");
     } catch (error) {
       console.error(error);
       setErrors(error.response.data.errors);
@@ -62,7 +62,7 @@ const UploadInformation = () => {
 
   return (
     <div>
-      {tracks &&
+      {tracks && (
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="trackTitle">
             <Form.Label>Title</Form.Label>
@@ -71,7 +71,11 @@ const UploadInformation = () => {
 
           <Form.Group controlId="trackDescription">
             <Form.Label>Description</Form.Label>
-            <Form.Control as="textarea" rows="3" placeholder="Track Description" />
+            <Form.Control
+              as="textarea"
+              rows="3"
+              placeholder="Track Description"
+            />
           </Form.Group>
 
           <Form.Group controlId="trackGenre">
@@ -91,7 +95,7 @@ const UploadInformation = () => {
 
           <Form.Group controlId="scale">
             <Form.Label>Scale</Form.Label>
-            <Select options={scales} onChange={handleScaleChange}/>
+            <Select options={scales} onChange={handleScaleChange} />
           </Form.Group>
 
           <Form.Group controlId="trackDuration">
@@ -101,20 +105,20 @@ const UploadInformation = () => {
 
           <Button variant="primary" type="submit">
             Submit
-      </Button>
+          </Button>
         </Form>
-
-
-      }
+      )}
 
       <div className="mt-3">
-        {errors && errors.map((error, index) =>
-          <Alert variant="danger" key={index}>{error}</Alert>
-        )}
+        {errors &&
+          errors.map((error, index) => (
+            <Alert variant="danger" key={index}>
+              {error}
+            </Alert>
+          ))}
       </div>
-
     </div>
   );
-}
+};
 
 export default UploadInformation;
