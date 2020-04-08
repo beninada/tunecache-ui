@@ -1,5 +1,5 @@
-import axios from 'axios';
-import JwtService from './jwt.service';
+import axios from "axios";
+import JwtService from "./jwt.service";
 
 const createAxiosConfig = (withAuth) => {
   const config = {
@@ -15,12 +15,8 @@ const createAxiosConfig = (withAuth) => {
   }
 
   return config;
-}
+};
 
-export const axiosInstance = axios.create(
-  createAxiosConfig(false)
-);
+export const axiosInstance = axios.create(createAxiosConfig(false));
 
-export const authedAxiosInstance = axios.create(
-  createAxiosConfig(true)
-);
+export const authedAxiosInstance = axios.create(createAxiosConfig(true));

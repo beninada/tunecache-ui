@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import JwtService from '../api/jwt.service';
+import { createSlice } from "@reduxjs/toolkit";
+import JwtService from "../api/jwt.service";
 
 let initialState = {
   email: null,
@@ -9,7 +9,7 @@ let initialState = {
 };
 
 const loggedInUser = createSlice({
-  name: 'loggedInUser',
+  name: "loggedInUser",
   initialState,
   reducers: {
     setLoggedInUser(state, action) {
@@ -24,7 +24,7 @@ const loggedInUser = createSlice({
       }
     },
     destroyLoggedInUser(state, action) {
-      Object.keys(state).forEach(function(index) {
+      Object.keys(state).forEach(function (index) {
         state[index] = null;
       });
       JwtService.destroyToken();
@@ -32,9 +32,6 @@ const loggedInUser = createSlice({
   },
 });
 
-export const {
-  setLoggedInUser,
-  destroyLoggedInUser,
-} = loggedInUser.actions;
+export const { setLoggedInUser, destroyLoggedInUser } = loggedInUser.actions;
 
 export default loggedInUser.reducer;
