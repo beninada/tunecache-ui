@@ -7,6 +7,7 @@ import PlaylistService from "../api/playlist.service";
 import Layout from "../components/Layout";
 import TrackList from "../components/TrackList";
 import PlaylistList from "../components/PlaylistList";
+import Title from "../components/Title";
 
 const User = () => {
   const buttonRef = React.createRef();
@@ -69,37 +70,40 @@ const User = () => {
     <Layout>
       <div>
         {artist && (
-          <Card style={{ width: "36rem" }}>
-            <Card.Img
-              variant="top"
-              src={
-                artist.profile_image === null
-                  ? `${process.env.PUBLIC_URL}/default_user_profile.png`
-                  : artist.profile_image
-              }
-            />
-            <Card.Body>
-              <Card.Title>{artist.username}</Card.Title>
-              <Card.Text>URI: {artist.uri}</Card.Text>
-              <Card.Text>Email: {artist.email}</Card.Text>
-              <div>
-                <input
-                  type="file"
-                  accept=".jpg,.jpeg,.png"
-                  multiple={false}
-                  onChange={uploadImage}
-                  style={{ display: "none" }}
-                  ref={buttonRef}
-                />
-                <Button variant="primary" onClick={triggerInput}>
-                  Upload Profile Image
-                </Button>
-              </div>
-              <div className="mt-3">
-                {errors && <Alert variant="danger">{errors}</Alert>}
-              </div>
-            </Card.Body>
-          </Card>
+          <div>
+            <Title title={artist.username} />
+            <Card style={{ width: "36rem" }}>
+              <Card.Img
+                variant="top"
+                src={
+                  artist.profile_image === null
+                    ? `${process.env.PUBLIC_URL}/default_user_profile.png`
+                    : artist.profile_image
+                }
+              />
+              <Card.Body>
+                <Card.Title>{artist.username}</Card.Title>
+                <Card.Text>URI: {artist.uri}</Card.Text>
+                <Card.Text>Email: {artist.email}</Card.Text>
+                <div>
+                  <input
+                    type="file"
+                    accept=".jpg,.jpeg,.png"
+                    multiple={false}
+                    onChange={uploadImage}
+                    style={{ display: "none" }}
+                    ref={buttonRef}
+                  />
+                  <Button variant="primary" onClick={triggerInput}>
+                    Upload Profile Image
+                  </Button>
+                </div>
+                <div className="mt-3">
+                  {errors && <Alert variant="danger">{errors}</Alert>}
+                </div>
+              </Card.Body>
+            </Card>
+          </div>
         )}
       </div>
       <div>
